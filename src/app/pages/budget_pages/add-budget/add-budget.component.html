@@ -1,0 +1,12 @@
+<form class="form" [formGroup]="budgetForm" (ngSubmit)="onSubmit()">
+  <label
+    >Title
+    <input id="title" type="text" formControlName="title" />
+  </label>
+  <label
+    >Amount
+    <input id="amount" type="number" formControlName="amount" />
+  </label>
+
+  <button type="submit" [disabled]="!budgetForm.valid">Submit</button>
+</form>

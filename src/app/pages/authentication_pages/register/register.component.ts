@@ -1,41 +1,63 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
+import { NavigationExtras, Router } from '@angular/router';
+import { UserService } from '../../../services/user.service';
+import { User } from 'src/app/models/user.model';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   email = '';
   password = '';
+  message = '';
+  firstName = '';
   errorMessage = ''; // validation error handle
   error: { name: string; message: string } = { name: '', message: '' }; // for firebase error handler
 
-  constructor(private authservice: AuthService, private router: Router) {}
+  constructor(
+    private authservice: AuthService,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {}
+
   // tslint:disable-next-line: typedef
   clearErrorMessage() {
     this.errorMessage = '';
     this.error = { name: '', message: '' };
   }
+
   // tslint:disable-next-line: typedef
-  login() {
+  register() {
     this.clearErrorMessage();
     if (this.validateForm(this.email, this.password)) {
       this.authservice
-        .loginWithEmail(this.email, this.password)
+        .registerWithEmail(this.email, this.password)
         .then(() => {
-          this.router.navigate(['/userinfo']);
+          this.message = 'Firebase registration completed!';
+
+          const userInfo: NavigationExtras = {
+            queryParams: {
+              firstName: this.firstName,
+              email: this.email,
+            },
+          };
+
+          this.router.navigate(['/user_info'], userInfo);
         })
+        // tslint:disable-next-line: variable-name
         .catch((_error) => {
           this.error = _error;
-          this.router.navigate(['/login']);
+
+          this.router.navigate(['/register']);
         });
     }
   }
+
   // tslint:disable-next-line: typedef
   validateForm(email, password) {
     if (email === undefined) {

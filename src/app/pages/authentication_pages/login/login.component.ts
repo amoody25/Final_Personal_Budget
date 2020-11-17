@@ -1,46 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class LoginComponent implements OnInit {
   email = '';
   password = '';
-  message = '';
   errorMessage = ''; // validation error handle
   error: { name: string; message: string } = { name: '', message: '' }; // for firebase error handler
 
   constructor(private authservice: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
-
   // tslint:disable-next-line: typedef
   clearErrorMessage() {
     this.errorMessage = '';
     this.error = { name: '', message: '' };
   }
-
   // tslint:disable-next-line: typedef
-  register() {
+  login() {
     this.clearErrorMessage();
     if (this.validateForm(this.email, this.password)) {
       this.authservice
-        .registerWithEmail(this.email, this.password)
+        .loginWithEmail(this.email, this.password)
         .then(() => {
-          this.message = 'Firebase registration completed!';
-          // this.router.navigate(['/userinfo']);
+          this.router.navigate(['/user_info']);
         })
+        // tslint:disable-next-line: variable-name
         .catch((_error) => {
           this.error = _error;
-          this.router.navigate(['/register']);
+          this.router.navigate(['/login']);
         });
     }
   }
-
   // tslint:disable-next-line: typedef
   validateForm(email, password) {
     if (email === undefined) {

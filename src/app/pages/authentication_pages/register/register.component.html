@@ -1,12 +1,22 @@
 <div class="container">
   <div class="row justify-content-center p-4">
     <div class="col-md-6">
-      <form (ngSubmit)="login()">
-        <h3>Firebase Login</h3>
+      <form (ngSubmit)="register()">
+        <h3>Firebase Register</h3>
+        <div class="form-group p-2">
+          <input
+            type="text"
+            name="firstName"
+            class="form-control"
+            [(ngModel)]="firstName"
+            placeholder="Enter First Name"
+            required
+          />
+        </div>
         <div class="form-group p-2">
           <input
             type="email"
-            name="login"
+            name="email"
             class="form-control"
             [(ngModel)]="email"
             placeholder="Enter Email"
@@ -24,9 +34,9 @@
           />
         </div>
         <div class="form-group p-2">
-          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="submit" class="btn btn-primary">Register</button>
           <div class="register">
-            <a href="#" routerLink="/register">New User Register</a>
+            <a href="#" routerLink="/login">Return To Login</a>
           </div>
         </div>
       </form>
@@ -37,6 +47,9 @@
 
         <p *ngIf="error.message.length > 0" class="text-danger">
           {{ error.message }}
+        </p>
+        <p *ngIf="message.length > 0" class="text-info">
+          {{ message }}
         </p>
       </div>
     </div>

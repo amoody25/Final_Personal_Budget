@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // import firebase module
 import { AngularFireModule } from '@angular/fire';
@@ -10,26 +10,35 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { UserinfoComponent } from './pages/userinfo/userinfo.component';
+import { LoginComponent } from './pages/authentication_pages/login/login.component';
+import { RegisterComponent } from './pages/authentication_pages/register/register.component';
+import { UserinfoComponent } from './pages/authentication_pages/userinfo/userinfo.component';
+import { AddBudgetComponent } from './pages/budget_pages/add-budget/add-budget.component';
+import { BudgetComponent } from './pages/budget_pages/budget/budget.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    UserinfoComponent
+    UserinfoComponent,
+    AddBudgetComponent,
+    BudgetComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
