@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Budget } from '../models/budget.model';
-import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +14,9 @@ export class BudgetService {
   }
 
   // tslint:disable-next-line: typedef
-  getBudgetById(user: User) {
+  getBudgetById(userId: string) {
     return this.firestore
-      .collection('budgets/' + user.userId)
+      .collection('budgets/', ref => ref.where("userId", "==", userId))
       .snapshotChanges();
   }
 

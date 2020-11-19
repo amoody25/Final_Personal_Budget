@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { NavigationExtras, Router } from '@angular/router';
-import { UserService } from '../../../services/user.service';
-import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +18,6 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authservice: AuthService,
     private router: Router,
-    private userService: UserService
   ) {}
 
   ngOnInit(): void {}

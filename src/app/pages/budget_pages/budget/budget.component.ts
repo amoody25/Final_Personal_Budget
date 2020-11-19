@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BudgetService } from '../../../services/budget.service';
 import { Budget } from '../../../models/budget.model';
-import { UserService } from '../../../services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-budget',
@@ -13,11 +13,11 @@ export class BudgetComponent implements OnInit {
 
   constructor(
     private budgetService: BudgetService,
-    private userService: UserService
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
-    this.budgetService.getBudget().subscribe((data) => {
+    this.budgetService.getBudgetById(this.authService.currentUserId).subscribe((data) => {
       this.budgets = data.map((e) => {
         return {
           id: e.payload.doc.id,

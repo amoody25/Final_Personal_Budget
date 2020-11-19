@@ -2,8 +2,6 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './services/auth.service';
-import { UserService } from './services/user.service';
-import { User } from './models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -15,30 +13,26 @@ export class AppComponent implements OnInit {
 
   public form: FormGroup;
 
-  public userList: User[] = [];
-  public userInfo: User;
-
   constructor(
     private fb: FormBuilder,
-    private userservice: UserService,
     private modalService: NgbModal,
     private authservice: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.getUsers();
+    //this.getUsers();
   }
 
-  getUsers(): void {
-    this.userservice.getUsers().subscribe((res) => {
-      this.userList = res.map((user) => {
-        return {
-          id: user.payload.doc.id,
-          ...(user.payload.doc.data() as User),
-        } as User;
-      });
-    });
-  }
+  // getUsers(): void {
+  //   this.userservice.getUsers().subscribe((res) => {
+  //     this.userList = res.map((user) => {
+  //       return {
+  //         id: user.payload.doc.id,
+  //         ...(user.payload.doc.data() as User),
+  //       } as User;
+  //     });
+  //   });
+  // }
 
   // openModal(content: TemplateRef<any>, userId: string): void {
   //   this.userInfo = this.userList.find((user: User) => (user.userId = userId));
@@ -71,15 +65,15 @@ export class AppComponent implements OnInit {
   //   return amount;
   // }
 
-  addUser(user: User): void {
-    this.userservice.addUser(user).then();
-  }
+  // addUser(user: User): void {
+  //   this.userservice.addUser(user).then();
+  // }
 
-  updateUser(user: User): void {
-    this.userservice.updateUser(user, this.form.value).then();
-  }
+  // updateUser(user: User): void {
+  //   this.userservice.updateUser(user, this.form.value).then();
+  // }
 
-  deleteUser(user: User): void {
-    this.userservice.deleteUser(user).then();
-  }
+  // deleteUser(user: User): void {
+  //   this.userservice.deleteUser(user).then();
+  // }
 }
