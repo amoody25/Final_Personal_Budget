@@ -17,6 +17,8 @@ import { AddBudgetComponent } from './pages/budget_pages/add-budget/add-budget.c
 import { BudgetComponent } from './pages/budget_pages/budget/budget.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ExpenseComponent } from './pages/expense_pages/expense/expense.component';
+import { AddExpenseComponent } from './pages/expense_pages/add-expense/add-expense.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserinfoComponent,
     AddBudgetComponent,
     BudgetComponent,
+    ExpenseComponent,
+    AddExpenseComponent,
   ],
   imports: [
     BrowserModule,

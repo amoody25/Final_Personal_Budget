@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <th>Title</th>
+    <th>Category</th>
+    <th>Amount</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let expense of expenses">
+      <td>{{ expense.title }}</td>
+      <td>{{ expense.category }}</td>
+      <td>{{ expense.amount }}</td>
+      <td>
+        <button class="btn-primary">Edit</button>
+      </td>
+      <td>
+        <button class="btn-danger" (click)="delete(expenses.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

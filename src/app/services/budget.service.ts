@@ -16,7 +16,7 @@ export class BudgetService {
   // tslint:disable-next-line: typedef
   getBudgetById(userId: string) {
     return this.firestore
-      .collection('budgets/', ref => ref.where("userId", "==", userId))
+      .collection('budgets/', (ref) => ref.where('userId', '==', userId))
       .snapshotChanges();
   }
 

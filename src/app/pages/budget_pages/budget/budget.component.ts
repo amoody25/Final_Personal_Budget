@@ -13,18 +13,20 @@ export class BudgetComponent implements OnInit {
 
   constructor(
     private budgetService: BudgetService,
-    private authService: AuthService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.budgetService.getBudgetById(this.authService.currentUserId).subscribe((data) => {
-      this.budgets = data.map((e) => {
-        return {
-          id: e.payload.doc.id,
-          ...(e.payload.doc.data() as Budget),
-        };
+    this.budgetService
+      .getBudgetById(this.authService.currentUserId)
+      .subscribe((data) => {
+        this.budgets = data.map((e) => {
+          return {
+            id: e.payload.doc.id,
+            ...(e.payload.doc.data() as Budget),
+          };
+        });
       });
-    });
   }
 
   // tslint:disable-next-line: typedef
