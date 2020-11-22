@@ -36,15 +36,7 @@ export class RegisterComponent implements OnInit {
         .registerWithEmail(this.email, this.password)
         .then(() => {
           this.message = 'Firebase registration completed!';
-
-          const userInfo: NavigationExtras = {
-            queryParams: {
-              firstName: this.firstName,
-              email: this.email,
-            },
-          };
-
-          this.router.navigate(['/user_info'], userInfo);
+          this.router.navigate(['/user_info']);
         })
         // tslint:disable-next-line: variable-name
         .catch((_error) => {
