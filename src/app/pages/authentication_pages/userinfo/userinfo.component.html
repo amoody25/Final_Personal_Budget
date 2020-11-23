@@ -2,12 +2,12 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="text-info p-5" *ngIf="authService.currentUser">
-      <h5 class="alldata">user information</h5>
-      <h4><b>User ID:</b>{{ authService.currentUserId }}</h4>
+      <h5 class="alldata">User information</h5>
       <h4><b>User Email:</b>{{ authService.currentUserName }}</h4>
-
-  <app-budget></app-budget>
+      <h4>My Budget!</h4>
+      <app-budget></app-budget>
+      <h4>My Expenses!</h4>
+      <app-expense></app-expense>
     </div>
   </div>
-
 </div>

@@ -12,8 +12,8 @@ export class BudgetComponent implements OnInit {
   budgets: Budget[];
 
   constructor(
-    private budgetService: BudgetService,
-    private authService: AuthService
+    public budgetService: BudgetService,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class BudgetComponent implements OnInit {
             id: e.payload.doc.id,
             ...(e.payload.doc.data() as Budget),
           };
-        })
+        });
       });
   }
   // tslint:disable-next-line: typedef

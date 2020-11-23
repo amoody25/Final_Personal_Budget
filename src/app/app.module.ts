@@ -22,6 +22,7 @@ import { AddExpenseComponent } from './pages/expense_pages/add-expense/add-expen
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NonUserNavComponent } from './components/non-user-nav/non-user-nav.component';
 import { NonUserInfoComponent } from './components/non-user-info/non-user-info.component';
+import { HomepageComponent } from './pages/homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { NonUserInfoComponent } from './components/non-user-info/non-user-info.c
     NavbarComponent,
     NonUserNavComponent,
     NonUserInfoComponent,
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
