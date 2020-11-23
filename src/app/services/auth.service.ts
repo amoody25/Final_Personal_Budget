@@ -69,6 +69,6 @@ export class AuthService {
   // tslint:disable-next-line: typedef
   signout(): void {
     this.afu.signOut();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 }

@@ -19,6 +19,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ExpenseComponent } from './pages/expense_pages/expense/expense.component';
 import { AddExpenseComponent } from './pages/expense_pages/add-expense/add-expense.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { NonUserNavComponent } from './components/non-user-nav/non-user-nav.component';
+import { NonUserInfoComponent } from './components/non-user-info/non-user-info.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { AddExpenseComponent } from './pages/expense_pages/add-expense/add-expen
     BudgetComponent,
     ExpenseComponent,
     AddExpenseComponent,
+    NavbarComponent,
+    NonUserNavComponent,
+    NonUserInfoComponent,
   ],
   imports: [
     BrowserModule,

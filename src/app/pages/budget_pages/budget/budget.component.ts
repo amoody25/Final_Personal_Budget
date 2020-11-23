@@ -25,10 +25,9 @@ export class BudgetComponent implements OnInit {
             id: e.payload.doc.id,
             ...(e.payload.doc.data() as Budget),
           };
-        });
+        })
       });
   }
-
   // tslint:disable-next-line: typedef
   update(budget: Budget) {
     this.budgetService.updateBudget(budget);
