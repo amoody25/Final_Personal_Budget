@@ -33,7 +33,9 @@ export class AddBudgetComponent implements OnInit {
   onSubmit(): void {
     const addBudget: Budget = {
       userId: this.authService.currentUserId,
+      // tslint:disable-next-line: no-string-literal
       title: this.budgetForm.controls['title'].value,
+      // tslint:disable-next-line: no-string-literal
       amount: this.budgetForm.controls['amount'].value,
     };
     this.budgetForm.reset();

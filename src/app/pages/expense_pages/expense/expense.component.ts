@@ -9,7 +9,7 @@ import { ExpenseService } from 'src/app/services/expense.service';
   styleUrls: ['./expense.component.scss'],
 })
 export class ExpenseComponent implements OnInit {
-  expenses: Expense[];
+  public expenses: Expense[];
 
   constructor(
     private expenseService: ExpenseService,
@@ -17,20 +17,48 @@ export class ExpenseComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.expenseService
-      .getExpenseById(this.authService.currentUserId)
-      .subscribe((data) => {
-        this.expenses = data.map((e) => {
-          return {
-            id: e.payload.doc.id,
-            ...(e.payload.doc.data() as Expense),
-          };
-        });
-      });
+    this.loadData();
+    // this.sumExpenses();
   }
 
   // tslint:disable-next-line: typedef
   delete(expenseId: string) {
     this.expenseService.deleteExpense(expenseId);
   }
+
+  // tslint:disable-next-line: typedef
+  loadData() {
+    this.expenseService
+      .getExpenseById(this.authService.currentUserId)
+      .subscribe((data) => {
+        this.expenses = data.map((expense) => {
+          return {
+            id: expense.payload.doc.id,
+            ...(expense.payload.doc.data() as Expense),
+          };
+        });
+      });
+  }
+
+  // tslint:disable-next-line: typedef
+  // sumExpenses() {
+  //   this.expenseService
+  //     .getExpenseById(this.authService.currentUserId)
+  //     .subscribe((data) => {
+  //       this.expenseArray = data.map((expense) => {
+  //         return {
+  //           id: expense.payload.doc.id,
+  //           ...(expense.payload.doc.data() as Expense),
+  //         };
+  //       });
+  //     });
+  //   if (this.expenseArray === undefined) {
+  //     console.log('array is undefined!');
+  //   } else {
+  //     console.log('got here!');
+  //     this.expenseArray.forEach((expense) => {
+  //       console.log('Category:' + expense.category);
+  //     });
+  //   }
+  // }
 }

@@ -30,6 +30,7 @@
     "firebase-admin": "^9.4.1",
     "jquery": "^3.5.1",
     "modal": "^1.2.0",
+    "plotly": "^1.0.6",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
