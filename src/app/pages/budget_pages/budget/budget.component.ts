@@ -17,7 +17,7 @@ export class BudgetComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.budgetService
+    const subscription = this.budgetService
       .getBudgetById(this.authService.currentUserId)
       .subscribe((data) => {
         this.budgets = data.map((e) => {
