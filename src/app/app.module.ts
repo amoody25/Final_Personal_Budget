@@ -23,6 +23,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NonUserNavComponent } from './components/non-user-nav/non-user-nav.component';
 import { NonUserInfoComponent } from './components/non-user-info/non-user-info.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
+import { PlotlyModule } from 'angular-plotly.js';
+import { CommonModule } from '@angular/common';
+import * as PlotlyJS from 'plotly.js/dist/plotly.js';
+
+PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
   declarations: [
@@ -49,8 +54,10 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
     AngularFirestoreModule,
     ReactiveFormsModule,
     NgbModule,
+    PlotlyModule,
+    CommonModule,
   ],
-  providers: [],
+  providers: [ExpenseComponent, BudgetComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

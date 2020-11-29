@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Expense } from 'src/app/models/expense.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { ExpenseService } from 'src/app/services/expense.service';
-import { interval, Observable, Subject, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { DocumentChangeAction } from '@angular/fire/firestore';
 
 @Component({
@@ -16,7 +16,7 @@ export class ExpenseComponent implements OnInit {
 
   expenseSubscription: Subscription;
 
-  public results: Expense[] = [];
+  public totalExpenses: Expense[] = [];
 
   constructor(
     private expenseService: ExpenseService,
@@ -25,7 +25,6 @@ export class ExpenseComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
-    // this.sumExpenses();
   }
 
   // tslint:disable-next-line: typedef
@@ -43,8 +42,6 @@ export class ExpenseComponent implements OnInit {
             id: expense.payload.doc.id,
             ...(expense.payload.doc.data() as Expense),
           };
-          // id: expense.payload.doc.id,
-          // ...(expense.payload.doc.data() as Expense),
         });
 
         const categoriesArray = this.expenses.filter(
@@ -53,7 +50,7 @@ export class ExpenseComponent implements OnInit {
         );
 
         categoriesArray.forEach((x) => {
-          this.results.push({
+          this.totalExpenses.push({
             title: '',
             category: x.category,
             amount: this.expenses
@@ -63,16 +60,4 @@ export class ExpenseComponent implements OnInit {
         });
       });
   }
-
-  // tslint:disable-next-line: typedef
-  // sumExpenses() {
-  //   if (this.expenseArray === undefined) {
-  //     console.log('array is undefined!');
-  //   } else {
-  //     console.log('got here!');
-  //     this.expenseArray.forEach((expense) => {
-  //       console.log('Category:' + expense.category);
-  //     });
-  //   }
-  // }
 }
