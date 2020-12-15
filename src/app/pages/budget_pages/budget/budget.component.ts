@@ -16,23 +16,29 @@ export class BudgetComponent implements OnInit {
 
   constructor(
     public budgetService: BudgetService,
-    public authService: AuthService,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.loadBudgets();
   }
 
-  loadBudgets(){
-    this.budgetSubscription = this.budgetService.getBudgetById(this.authService.currentUserId)
-    .subscribe((data) => {
-      this.budgets = data.map((budget) => {
-        return {
-          id: budget.payload.doc.id,
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngOnDestroy(): void {
+    this.budgetSubscription.unsubscribe();
+  }
+
+  loadBudgets(): void {
+    this.budgetSubscription = this.budgetService
+      .getBudgetById(this.authService.currentUserId)
+      .subscribe((data) => {
+        this.budgets = data.map((budget) => {
+          return {
+            id: budget.payload.doc.id,
             ...(budget.payload.doc.data() as Budget),
-        }
-      })
-    })
+          };
+        });
+      });
   }
   // tslint:disable-next-line: typedef
   update(budget: Budget) {

@@ -3,7 +3,6 @@ import { Expense } from 'src/app/models/expense.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { ExpenseService } from 'src/app/services/expense.service';
 import { Observable, Subscription } from 'rxjs';
-import { DocumentChangeAction } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-expense',
@@ -12,7 +11,6 @@ import { DocumentChangeAction } from '@angular/fire/firestore';
 })
 export class ExpenseComponent implements OnInit {
   public expenses: Expense[] = [];
-  expensesArray: Observable<DocumentChangeAction<unknown>[]>;
 
   expenseSubscription: Subscription;
 
@@ -28,7 +26,7 @@ export class ExpenseComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  delete(expenseId: string) {
+  delete(expenseId: string): void {
     this.expenseService.deleteExpense(expenseId);
   }
 
@@ -44,20 +42,20 @@ export class ExpenseComponent implements OnInit {
           };
         });
 
-        const categoriesArray = this.expenses.filter(
-          (expense, i, results) =>
-            results.findIndex((x) => x.category === expense.category) === i
-        );
+        // const categoriesArray = this.expenses.filter(
+        //   (expense, i, results) =>
+        //     results.findIndex((x) => x.category === expense.category) === i
+        // );
 
-        categoriesArray.forEach((x) => {
-          this.totalExpenses.push({
-            title: '',
-            category: x.category,
-            amount: this.expenses
-              .filter((y) => y.category === x.category)
-              .reduce((sum, current) => sum + current.amount, 0),
-          } as Expense);
-        });
+        // categoriesArray.forEach((x) => {
+        //   this.totalExpenses.push({
+        //     title: '',
+        //     category: x.category,
+        //     amount: this.expenses
+        //       .filter((y) => y.category === x.category)
+        //       .reduce((sum, current) => sum + current.amount, 0),
+        //   } as Expense);
+        // });
       });
   }
 }

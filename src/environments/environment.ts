@@ -5,14 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyAmTg5aTdMtCs4PMwfQkWU-Li1elA3_AuI',
-    authDomain: 'personal-budget-53277.firebaseapp.com',
-    databaseURL: 'https://personal-budget-53277.firebaseio.com',
-    projectId: 'personal-budget-53277',
-    storageBucket: 'personal-budget-53277.appspot.com',
-    messagingSenderId: '119818391389',
-    appId: '1:119818391389:web:b6b26f21459d3a29dd22b4',
-    measurementId: 'G-E87DTMC1E7',
+    apiKey: 'AIzaSyD-aAWwYaHpMCrZhIc-ZviVwtaQxAzwIRI',
+    authDomain: 'personal-budget-634db.firebaseapp.com',
+    projectId: 'personal-budget-634db',
+    storageBucket: 'personal-budget-634db.appspot.com',
+    messagingSenderId: '82123684119',
+    appId: '1:82123684119:web:da5ecb3c3d145c00a09f52',
+    measurementId: 'G-PS90FR2F9Z',
   },
 };
 

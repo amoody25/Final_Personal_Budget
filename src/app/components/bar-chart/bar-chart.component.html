@@ -1,0 +1,15 @@
+<div *ngIf="this.multi">
+  <ngx-charts-bar-vertical-stacked
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="this.multi"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+  >
+  </ngx-charts-bar-vertical-stacked>
+</div>

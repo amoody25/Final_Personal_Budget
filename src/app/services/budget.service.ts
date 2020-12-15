@@ -19,7 +19,6 @@ export class BudgetService {
       .collection('budgets/', (ref) => ref.where('userId', '==', userId))
       .snapshotChanges();
   }
-
   // tslint:disable-next-line: typedef
   addBudget(budget: Budget) {
     return this.firestore.collection('budgets').add(budget);
