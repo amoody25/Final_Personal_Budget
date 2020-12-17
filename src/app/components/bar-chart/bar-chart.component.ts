@@ -5,8 +5,6 @@ import { ExpenseService } from 'src/app/services/expense.service';
 import { Subscription } from 'rxjs';
 import { BudgetService } from 'src/app/services/budget.service';
 import { Budget } from 'src/app/models/budget.model';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-bar-chart',
@@ -15,21 +13,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class BarChartComponent implements OnInit {
   expenses: Expense[] = [];
-  public multi: any = [
-    // {
-    //   name: 'Germany',
-    //   series: [
-    //     {
-    //       name: '2010',
-    //       value: 7300000,
-    //     },
-    //     {
-    //       name: '2011',
-    //       value: 8940000,
-    //     },
-    //   ],
-    // },
-  ];
+  public multi: any = [];
   budgetResults: Budget[] = [];
   totalExpenseResults: Expense[] = [];
   expenseSubscription: Subscription;
@@ -117,7 +101,8 @@ export class BarChartComponent implements OnInit {
                     name: 'expense',
                     value: this.totalExpenseResults
                       .filter((expense) => expense.category === budget.title)
-                      .reduce((sum, current) => sum + current.amount, 0),
+                      // .map((expObj) => expObj.amount),
+                      .reduce((sum, current) => current.amount, 0),
                   },
                 ],
               });
