@@ -16,6 +16,7 @@ export class BarChartComponent implements OnInit {
   public multi: any = [];
   budgetResults: Budget[] = [];
   totalExpenseResults: Expense[] = [];
+  categoriesArray = [];
   expenseSubscription: Subscription;
   budgetSubscription: Subscription;
 
@@ -70,45 +71,54 @@ export class BarChartComponent implements OnInit {
               };
             });
 
-            const categoriesArray = this.expenses.filter(
-              (expense, i, results) =>
-                results.findIndex(
-                  (budget) => budget.category === expense.category
-                ) === i
-            );
+            this.gatherCategories();
+            this.totalExpensesByCategory();
+            this.setChartData();
 
-            categoriesArray.forEach((budget) => {
-              this.totalExpenseResults.push({
-                title: '',
-                category: budget.category,
-                amount: this.expenses
-                  .filter((expense) => expense.category === budget.category)
-                  .reduce((sum, current) => sum + current.amount, 0),
-              } as Expense);
-            });
-
-            this.budgetResults.forEach((budget) => {
-              this.multi.push({
-                name: budget.title,
-                series: [
-                  {
-                    // tslint:disable-next-line: quotemark
-                    name: 'budget',
-                    value: budget.amount,
-                  },
-                  {
-                    // tslint:disable-next-line: quotemark
-                    name: 'expense',
-                    value: this.totalExpenseResults
-                      .filter((expense) => expense.category === budget.title)
-                      // .map((expObj) => expObj.amount),
-                      .reduce((sum, current) => current.amount, 0),
-                  },
-                ],
-              });
-            });
             this.multi = [...this.multi];
           });
       });
+  }
+
+  // reads through budgets to determine categories of budgets and stores them in categoriesArray.
+  gatherCategories(): void {
+    this.categoriesArray = this.expenses.filter(
+      (expense, i, results) =>
+        results.findIndex((budget) => budget.category === expense.category) ===
+        i
+    );
+  }
+  // totals all expenses in a given budget category and stores them in totalExpenseResults.
+  totalExpensesByCategory(): void {
+    this.categoriesArray.forEach((budget) => {
+      this.totalExpenseResults.push({
+        title: '',
+        category: budget.category,
+        amount: this.expenses
+          .filter((expense) => expense.category === budget.category)
+          .reduce((sum, current) => sum + current.amount, 0),
+      } as Expense);
+    });
+  }
+
+  // formats data to be read by charting software to display budget and expense data together.
+  setChartData(): void {
+    this.budgetResults.forEach((budget) => {
+      this.multi.push({
+        name: budget.title,
+        series: [
+          {
+            name: 'budget',
+            value: budget.amount,
+          },
+          {
+            name: 'expense',
+            value: this.totalExpenseResults
+              .filter((expense) => expense.category === budget.title)
+              .reduce((sum, current) => current.amount, 0),
+          },
+        ],
+      });
+    });
   }
 }
