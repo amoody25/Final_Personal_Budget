@@ -11,6 +11,8 @@ import { Subscription } from 'rxjs';
 })
 export class BudgetComponent implements OnInit {
   budgets: Budget[] = [];
+  editState: boolean = false;
+  budgetUpdate: Budget;
 
   budgetSubscription: Subscription;
 
@@ -41,8 +43,10 @@ export class BudgetComponent implements OnInit {
       });
   }
   // tslint:disable-next-line: typedef
-  update(budget: Budget) {
-    this.budgetService.updateBudget(budget);
+  update(event, budget: Budget) {
+    this.editState = true;
+    this.budgetUpdate = budget;
+    // this.budgetService.updateBudget(budget);
   }
 
   // tslint:disable-next-line: typedef

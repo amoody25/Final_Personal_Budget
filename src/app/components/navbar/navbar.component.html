@@ -10,7 +10,7 @@
     </ul>
   </div>
   <div class="mx-auto order-0">
-    <a class="navbar-brand mx-auto" href="#">EZBudget</a>
+    <a class="navbar-brand mx-auto" href="homepage">EZBudget</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -23,7 +23,9 @@
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" (click)="authService.signout()">Logout</a>
+        <a class="nav-link" href="logout" (click)="authService.signout()"
+          >Logout</a
+        >
       </li>
     </ul>
   </div>

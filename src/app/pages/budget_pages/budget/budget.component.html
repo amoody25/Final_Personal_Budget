@@ -8,7 +8,9 @@
       <td>{{ budget.title }}</td>
       <td>{{ budget.amount }}</td>
       <td>
-        <button class="btn-primary">Edit</button>
+        <button class="btn-primary" (click)="update($event, budget)">
+          Edit
+        </button>
       </td>
       <td>
         <button class="btn-danger" (click)="delete(budget.id)">Delete</button>

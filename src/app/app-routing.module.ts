@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'user_info', component: UserinfoComponent },
   { path: 'my_budget', component: BudgetComponent },
   { path: 'non-user-info', component: NonUserInfoComponent },
+  { path: 'logout', redirectTo: 'non-user-info' },
 ];
 
 @NgModule({
